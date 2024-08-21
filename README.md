@@ -1,72 +1,154 @@
-# Redmine Issue Checklist Plugin
+Hi there,
 
-[![Build Status](https://travis-ci.org/Restream/redmine_issue_checklist.svg?branch=master)](https://travis-ci.org/Restream/redmine_issue_checklist)
-[![Code Climate](https://codeclimate.com/github/Restream/redmine_issue_checklist/badges/gpa.svg)](https://codeclimate.com/github/Restream/redmine_issue_checklist)
+I was struggling with configuring this plugin and decided to go through all the configuration as I couldn't find a repo,
+that provides a "ready" and configured solution for
+**Redmine 5.1.x**.
 
-This plugin enables you to add checklists to Redmine issues. 
+1) It's actually a fork of https://github.com/Restream/redmine_issue_checklist
+   but it doesn't work for me. No wonder, because it hasn't been updated for 7 years with maintainability F (Press F to pay respect)
+2) Why did I decide to put Sortable.js and Prototype.js in one file? Because I don't care about performance and wanted it to work.
 
-The initial author of the plugin is [Kirill Bezrukov](http://www.redminecrm.com/projects/checklist/pages/1)
+# How to install
+1) `cd {REDMINE_ROOT}`
+2) `git clone https://github.com/lievre95/redmine_issue_checklist plugins/redmine_issue_checklist`
+3) `bundle exec rake redmine:plugins:migrate RAILS_ENV=production`
+4) `RAILS_ENV=production bundle exec puma -C config/puma.rb`
+5) Enjoy!
 
-## Compatibility
+### **Was tested on Redmine 5.1.5**
+### **Inside of wsl, please don't ask why =) # 
 
-This plugin version is compatible only with Redmine 3.0 and later.
+`uname -srm`
+> Linux 4.4.0-19041-Microsoft x86_64 **
 
-## Installation
+`wsl.exe --list --all`
 
-1. To install the plugin
-    * Download the .ZIP archive, extract files and copy the plugin directory into #{REDMINE_ROOT}/plugins.
-    
-    Or
+> Windows-Subsystem für Linux-Distributionen:
+Ubuntu (Standard)
 
-    * Change you current directory to your Redmine root directory:  
+`wsl -l -v`
+NAME        STATE           VERSION
+* Ubuntu    Running         1
 
-            cd {REDMINE_ROOT}
-            
-      Copy the plugin from GitHub using the following commands:
-      
-            git clone https://github.com/Restream/redmine_issue_checklist.git plugins/redmine_issue_checklist
-            
-2. Update the Gemfile.lock file by running the following commands:  
+# Details
 
-        bundle install
-            
-3. This plugin requires a migration. Run the following command to upgrade your database (make a database backup before):  
+`ruby -v`
 
-        bundle exec rake redmine:plugins:migrate RAILS_ENV=production 
-        
-4. Restart Redmine.
+> ruby 3.1.0p0 (2021-12-25 revision fb4df44d16) [x86_64-linux]
 
-Now you should be able to see the plugin in **Administration > Plugins**.
+`rails -v`
 
-## Usage
+> Rails 6.1.7.2
 
-The Redmine Issue Checklist plugin enables you to add checklists to Redmine issues.
+`bundle -v`
 
-You can configure the plugin to track the checklist changes in the issue log and change the issue done ratio based on the checklist progress. To do this, go to **Administration > Plugins**, clik**Configure** and select the corresponding check boxes.  
-![plugin settings](doc/issue_checklist_1.png)
+> Bundler version 2.3.3
 
-To add a checklist to an issue, enter the checklist item text into the the **Checklist** field in the issue description and click the **+** button.  
-![checklist item](doc/issue_checklist_2.png)
+`mysql --version`
 
-You can add as many checklist items as you need. To rearrange the checklist, drag and drop the items in the desired order. To delete an item, click the trash bin icon.  
-![checklist item](doc/issue_checklist_3.png)
+>  mysql  Ver 8.0.39-0ubuntu0.22.04.1 for Linux on x86_64 ((Ubuntu))
 
-To mark the completed checklist items, select the corresponding check boxes. The plugin will display the changes in the issue log and change the issue done ratio, if you have configured it accordingly.  
-![progress](doc/issue_checklist_4.png)
+`node -v`
 
-To manage checklist-related permissions, go to **Administration > Roles and permissions**, click the role name and select or clear the required check boxes.  
-![permissions](doc/issue_checklist_5.png)
+> v20.16.0
 
-## Testing
+`yarn -v`
+> 1.22.22
 
-Run tests using the following command:
+`puma -v`
+>Puma starting in single mode...
+> * Puma version: 5.6.8 (ruby 3.1.0-p0) ("Birdie's Version")
+> *  Min threads: 0
+> *  Max threads: 5
 
-    rake redmine:plugins:test NAME=redmine_issue_checklist RAILS_ENV=test_sqlite3
-    
-## Maintainers
+`nginx -v`
 
-Danil Tashkinov, [github.com/nodecarter](https://github.com/nodecarter)
- 
-## License
+> nginx version: nginx/1.18.0 (Ubuntu)
 
-Redmine Checklist plugin is open source and released under the terms of the GNU General Public License v2 (GPL).
+`bundle list`
+Gems included by the bundle:
+* actioncable (6.1.7.2)
+* actionmailbox (6.1.7.2)
+* actionmailer (6.1.7.2)
+* actionpack (6.1.7.2)
+* actionpack-xml_parser (2.0.1)
+* actiontext (6.1.7.2)
+* actionview (6.1.7.2)
+* activejob (6.1.7.2)
+* activemodel (6.1.7.2)
+* activerecord (6.1.7.2)
+* activestorage (6.1.7.2)
+* activesupport (6.1.7.2)
+* acts_as_list (0.9.19)
+* addressable (2.8.7)
+* blankslate (3.1.3)
+* builder (3.3.0)
+* chunky_png (1.4.0)
+* commonmarker (0.23.10)
+* concurrent-ruby (1.3.4)
+* crass (1.0.6)
+* css_parser (1.17.1)
+* csv (3.2.9)
+* deckar01-task_list (2.3.2)
+* digest (3.1.1)
+* erubi (1.13.0)
+* globalid (1.2.1)
+* haml (5.1.2)
+* html-pipeline (2.13.2)
+* htmlentities (4.3.4)
+* i18n (1.10.0)
+* loofah (2.22.0)
+* mail (2.7.1)
+* marcel (1.0.4)
+* method_source (1.1.0)
+* mini_magick (4.11.0)
+* mini_mime (1.1.5)
+* minitest (5.24.1)
+* mysql2 (0.5.6)
+* net-imap (0.2.4)
+* net-ldap (0.17.1)
+* net-pop (0.1.2)
+* net-protocol (0.2.2)
+* net-smtp (0.3.4)
+* nio4r (2.7.3)
+* nokogiri (1.13.10)
+* public_suffix (6.0.1)
+* puma (5.6.8)
+* racc (1.8.1)
+* rack (2.2.9)
+* rack-test (2.1.0)
+* rails (6.1.7.2)
+* rails-dom-testing (2.2.0)
+* rails-html-sanitizer (1.5.0)
+* railties (6.1.7.2)
+* rake (13.2.1)
+* rbpdf (1.21.3)
+* rbpdf-font (1.19.1)
+* redcarpet (3.5.1)
+* request_store (1.5.1)
+* rexml (3.3.4)
+* roadie (5.1.0)
+* roadie-rails (3.0.0)
+* rotp (6.3.0)
+* rouge (3.28.0)
+* rqrcode (2.2.0)
+* rqrcode_core (1.2.0)
+* rubyzip (2.3.2)
+* sanitize (6.1.2)
+* sprockets (4.2.1)
+* sprockets-rails (3.5.2)
+* strscan (3.1.0)
+* temple (0.10.3)
+* thor (1.3.1)
+* tilt (2.4.0)
+* timeout (0.4.1)
+* tzinfo (2.0.6)
+* websocket-driver (0.7.6)
+* websocket-extensions (0.1.5)
+* zeitwerk (2.6.17)
+
+![img.png](img.png)
+
+# Contact
+If you have any questions or suggestions, please contact me via
+[Telegram](https://t.me/doga_john)

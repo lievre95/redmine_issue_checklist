@@ -4,8 +4,8 @@ class IssueChecklist < ActiveRecord::Base
   has_one :comment, as: :commented, dependent: :delete
   acts_as_list
 
-  attr_accessible :is_done, :subject
-  attr_protected :id
+  # attr_accessible :is_done, :subject  # Removed
+  # attr_protected :id                  # Removed
 
   validates_presence_of :subject
 
